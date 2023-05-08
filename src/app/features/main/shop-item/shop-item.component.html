@@ -1,0 +1,10 @@
+<div class="item-container" [routerLink]="item.category +'/'+ item.id">
+  <div class="item">
+    <div class="item__image-container flex flex-center">
+      <img class="item__image bg-image" [src]="item.image_url">
+    </div>
+    <div class="item__name-container flex flex-center">
+      <p class="item__name">{{item.name}}</p>
+    </div>
+  </div>
+</div>

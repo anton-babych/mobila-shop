@@ -1,4 +1,87 @@
+@import "assets/fonts/norms/stylesheet.css";
+@import "assets/fonts/flexible/stylesheet";
+
 *, :before, :after{
   padding: 0;
   margin: 0;
+}
+
+html{
+  font-size: 62.5%;
+  font-family: 'TT Norms', sans-serif;
+}
+
+.sm-border{
+  border: black .5px solid;
+}
+
+.bg-border{
+  border: black 1px solid;
+}
+
+.bg-border-left{
+  border-left: black 1px solid;
+}
+
+.bg-border-bottom{
+  border-bottom: black 1px solid;
+}
+
+.bg-border-top{
+  border-top: black 1px solid;
+}
+
+.bg-border-right{
+  border-right: black 1px solid;
+}
+
+.bg-image{
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.mr-10{
+  margin-right: 1rem;
+}
+
+
+.cursor{
+  cursor: pointer;
+  user-select: none;
+}
+
+.flex{
+  display: flex;
+  width: 100%;
+
+  &-space{
+    justify-content: space-between;
+  }
+  &-center{
+    justify-content: center;
+    place-items: center;
+  }
+  &-vertical{
+    flex-direction: column;
+  }
+  &-horizontal{
+
+  }
+
+  &-wrap{
+    flex-wrap: wrap;
+  }
+
+  &-gap{
+    gap: 1rem;
+  }
+}
+
+.difference{
+  mix-blend-mode: difference;
+}
+
+.no-overflow{
+  overflow: hidden;
 }

@@ -1,0 +1,33 @@
+<ng-template #mobileHeader *ngIf="isMobile">
+
+</ng-template>
+
+<ng-container #pcHeader *ngIf="!isMobile">
+  <div class="header-wrapper">
+    <div class="header bg-border">
+      <div class="header__left">
+        <div class="header__btn">
+          <p class="header__text">УВІЙТИ</p>
+        </div>
+      </div>
+
+      <div class="header__center">
+        <p class="header__logo cursor" routerLink="/">mobila</p>
+      </div>
+
+      <div class="header__right bg-border-left">
+        <div class="header__btn" routerLink="/admin">
+          <p class="header__text">УВІЙТИ</p>
+        </div>
+        <div class="header__btn bg-border-left" (click)="handleBasketClick()">
+          <p class="header__text">КОРЗИНА({{basketCount}})</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<div class="basket-wrapper">
+  <basket-container></basket-container>
+</div>
+

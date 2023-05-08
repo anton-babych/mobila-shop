@@ -1,0 +1,13 @@
+<form [formGroup]="formGroup" class="flex flex-vertical flex-gap" (ngSubmit)="handleSubmit()">
+  <div class="flex flex-vertical" *ngFor="let control of formControls">
+    <label [for]="control.name">{{ control.label }}</label>
+    <input class="fit-content-input"
+           [id]="control.name"
+           [type]="control.type"
+           [formControlName]="control.name"
+           [placeholder]="control.placeholder"
+    >
+  </div>
+  <button type="submit" [disabled]="formGroup.invalid">Зберегти</button>
+  <button (click)="handleDelete()" type="reset">Видалити</button>
+</form>

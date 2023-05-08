@@ -1,0 +1,8 @@
+<basket *ngIf="isVisible"
+        [basketsData]="basketsData"
+        [totalPrice]="totalPrice"
+        (needsToDeleteItem)="onItemDelete($event)"
+        (needsToRecalculateTotalPrice)="onCalculateTotalPrice()"
+></basket>
+
+

@@ -1,0 +1,38 @@
+<div class="basket-container">
+  <div class="basket-grid" *ngIf="basketsData.length; else empty">
+    <div class="basket-item bg-border-bottom" *ngFor="let basket of basketsData">
+      <div class="basket-item__image-container">
+        <img [src]="basket.image_url" alt="Фото {{basket.name}}" class="basket-item__image">
+      </div>
+      <div class="basket-item__info bg-border-left flex flex-vertical flex-space">
+        <p class="basket-item__info__name text-style-1">{{basket.name}}</p>
+        <p class="basket-item__info__price text-style-2">{{basket.count * basket.price}} грн</p>
+        <div class="flex flex-space">
+          <div class="basket-item__info__count-container flex">
+            <p class="text-style-1 cursor" (click)="increaseCountFor(basket)">+</p>
+            <p class="text-style-1 ml-10">{{basket.count}}</p>
+            <p class="text-style-1 ml-10 cursor" (click)="decreaseCountFor(basket)">-</p>
+          </div>
+          <p class="text-style-3 cursor" (click)="handleDeleteItem(basket.id)">Видалити</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="basket-total" *ngIf="basketsData.length">
+    <div class="basket-total__header">
+      <h3 class="basket-total__header__title">До оплати</h3>
+      <p class="basket-total__header__price">{{totalPrice}} грн</p>
+    </div>
+
+    <div class="basket-total__buttons">
+      <div class="basket-total__buttons__btn negative">замовити</div>
+    </div>
+  </div>
+</div>
+
+<ng-template #empty>
+  <div class="empty">
+    <p class="empty__text"> Тут нічого немає... </p>
+  </div>
+</ng-template>

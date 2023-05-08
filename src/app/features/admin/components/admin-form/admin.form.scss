@@ -1,0 +1,17 @@
+.fit-content-input{
+  width: auto;
+  max-width: 100%;
+  font-size: 18px;
+}
+
+input {
+  border: none;
+}
+
+.ng-invalid{
+  border-bottom: 2px solid red;
+}
+
+.ng-valid{
+  border-bottom: 2px solid green;
+}

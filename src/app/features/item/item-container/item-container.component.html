@@ -1,0 +1,46 @@
+<div class="start-container">
+  <div class="rel fullscreen">
+    <div class="scroll-text-container">
+      <running-text
+        [fontSize]="10"
+        [text]="item.name"
+        [count]="5"
+        [animationDuration]="50">
+      </running-text>
+    </div>
+    <img [src]="item.image_url" class="item-image bg-image">
+  </div>
+
+  <div class="description fullscreen rel flex flex-center difference sm-mb">
+    <div class="circle-parent">
+      <div class="circle"></div>
+    </div>
+    <div class="description__text">
+      <span class="description__word" *ngFor="let word of item.description | splitIntoWords">{{word}}&nbsp;</span>
+    </div>
+  </div>
+
+  <div class="page-info sm-mb">
+    <span class="item-title sm-mb flex flex-center flex-wrap no-overflow">
+      <span class="char" *ngFor="let char of item.name | splitIntoChars">{{char}}</span>
+    </span>
+    <div class="btn {{isAdded ? 'passive' : 'active'}} sm-mb"
+         (click)="handleClick()">
+      {{isAdded ? 'в кошику' : 'додати в кошик'}}
+    </div>
+    <ng-container [ngSwitch]="category" *ngIf="accessoriesData.length">
+      <ng-container *ngSwitchCase="'Телефони'">
+        <p class="other-title sm-mb">до цього товару також підійде:</p>
+        <div class="other-grid">
+          <div class="other-item bg-border-right bg-border-bottom bg-border-top"
+               *ngFor="let accessory of accessoriesData">
+            {{accessory.name}}
+            <div class="other-button other-button-left" (click)="handleForwardClick()"></div>
+            <div class="other-button other-button-right"></div>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+
+  </div>
+</div>

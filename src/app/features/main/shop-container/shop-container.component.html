@@ -1,0 +1,51 @@
+<section class="start-section">
+  <div class="running-text-container">
+    <running-text
+      [text]="'Суперціна!'"
+      [animationDuration]="20"
+      [fontSize]="5">
+    </running-text>
+  </div>
+  <div class="text-section">
+    <div class="mouse-mask-area" *ngIf="!isMobile">
+      <mouse-mask-image
+        [imageUrl]="'https://media.wired.com/photos/5be5fc958daf7470d1923b30/191:100/w_1280,c_limit/JunkDevices-607673850.jpg'">
+      </mouse-mask-image>
+    </div>
+    <div class="text-area difference">
+      <h1 class="text-area__title">mobila</h1>
+    </div>
+  </div>
+  <div class="running-text-container">
+    <running-text
+      [text]="'Завітай!'"
+      [animationDuration]="20"
+      [fontSize]="2">
+    </running-text>
+  </div>
+</section>
+
+<div class="category-container">
+  <span class="category-title category-title__{{pickedCategory === category ? 'active' : 'default'}}"
+        *ngFor="let category of categoryValues"
+        (click)="handleCategoryChange(category)"
+  >{{category}}
+  </span>
+</div>
+<ng-container [ngSwitch]="pickedCategory">
+  <ng-container *ngSwitchCase="ShopCategory.Phones">
+    <shop-grid [items]="data"></shop-grid>
+  </ng-container>
+  <ng-container *ngSwitchCase="ShopCategory.Cases">
+    <div class="models-container flex flex-center flex-wrap">
+      <div class="category-title category-title__{{model === pickedModel ? 'active' : 'default'}}"
+           *ngFor="let model of models"
+           (click)="handleModelChange(model)"
+      >{{model}}</div>
+    </div>
+    <shop-grid [items]="data"></shop-grid>
+  </ng-container>
+</ng-container>
+
+
+

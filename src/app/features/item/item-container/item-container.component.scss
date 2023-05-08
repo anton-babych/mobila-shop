@@ -1,0 +1,159 @@
+$full-screen: calc(100vh - 4rem);
+
+.start-container{
+  width: 100%;
+}
+
+.rel{
+  position: relative;
+}
+
+.item-image{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+
+  width: clamp(7rem, 50vw, 40rem);
+  transform: translate(-50%, -50%);
+
+  pointer-events: none;
+}
+
+.scroll-text-container{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 100%;
+}
+
+.fullscreen{
+  width: 100%;
+  height: $full-screen;
+}
+
+.char{
+  font-size: 6vw;
+  font-weight: 100;
+  text-transform: uppercase;
+  white-space:pre;
+}
+
+.sm-mb{
+  margin-bottom: 2rem;
+}
+
+.description{
+  overflow: hidden;
+  &__text{
+    width: clamp(25rem, 50%, 100rem);
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__word{
+    font-size: clamp(1.8rem, 3vw, 3rem);
+  }
+}
+
+.circle-parent{
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30vw;
+  aspect-ratio: 1;
+
+}
+
+.circle{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: white;
+}
+
+.item-price-container{
+}
+
+.btn{
+  padding: 1rem 2rem;
+  transition: all .35s ease-out;
+
+  font-size: 2rem;
+  font-weight: 400;
+  text-align: center;
+
+  width: auto;
+}
+
+.active{
+  background-color: white;
+  border: 1px #0060F1 solid;
+  cursor: pointer;
+  color: #0060F1;
+
+
+  &:hover{
+    background-color: #0060F1;
+    color: white;
+    border-radius: 1rem;
+  }
+}
+
+.passive{
+  background-color: #0060F1;
+  color: white;
+  border-radius: 1rem;
+}
+
+.other-grid{
+  height: 30rem;
+  width: 100%;
+
+  overflow: hidden;
+
+  display: flex;
+  position: relative;
+
+  //display: grid;
+  //
+  //grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  //grid-gap: 0;
+
+}
+
+.other-item{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: red;
+
+  &:last-child {
+    background-color: yellow;
+  }
+}
+
+.other-button{
+  position: absolute;
+  top: 0;
+  width: 20%;
+  height: 100%;
+  background-color: darkgray;
+
+  &-left{
+    left: 0;
+  }
+
+  &-right{
+    right: 0;
+  }
+}
+
+.other-title{
+  font-size: 4vw;
+  font-weight: 100;
+  text-align: center;
+}

@@ -1,0 +1,113 @@
+.basket-container{
+  width: clamp(5rem, 100vw, 40.15rem);
+
+  background-color: white;
+  border: 1px black solid;
+}
+
+.basket-content{
+  height: 100%;
+  width: 100%;
+}
+
+.basket-grid{
+
+}
+
+.basket-item{
+  height: 15rem;
+  display: flex;
+
+  &__image-container{
+    height: 100%;
+    aspect-ratio: 1;
+
+    display: flex;
+    place-items: center;
+    justify-content: center;
+  }
+
+  &__image{
+    height: 70%;
+    aspect-ratio: 1;
+  }
+
+  &__info{
+
+    padding: 2rem;
+    width: 100%;
+  }
+}
+
+.basket-total{
+  &__header{
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+
+    &__title{
+      font-size: 1.5rem;
+    }
+
+    &__price{
+      font-size: 1.5rem;
+    }
+  }
+
+  &__buttons{
+    display: flex;
+    justify-content: space-between;
+
+    &__btn{
+      padding: 1rem 0;
+      flex: 1;
+      text-align: center;
+      cursor: pointer;
+
+      font-size: 1.6rem;
+    }
+  }
+}
+
+.default{
+  color: black;
+}
+
+.negative{
+  background-color: black;
+  color: white;
+}
+
+.empty{
+  height: 10rem;
+
+  display: flex;
+  justify-content: center;
+  place-items: center;
+
+  &__text{
+    font-style: italic;
+    font-size: 1.5rem;
+    font-weight: 300;
+  }
+}
+
+.text-style-1{
+  font-size: 1.8rem;
+}
+
+.text-style-2{
+  font-size: 1.6rem;
+  color: #0060F1;
+}
+
+.text-style-3{
+  font-size: 1.3rem;
+  color: gray;
+  text-decoration: underline;
+}
+
+
+.ml-10{
+  margin-left: 1rem;
+}

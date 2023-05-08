@@ -1,0 +1,47 @@
+.header-wrapper{
+  position: fixed;
+  width: -webkit-fill-available;
+  z-index: 100;
+}
+
+.header{
+  height: 4rem;
+  background-color: #ffffff;
+
+  display: flex;
+  justify-content: space-between;
+
+  &__center{
+    display: flex;
+    place-items: center;
+  }
+
+  &__right{
+    width: 25rem;
+    height: 100%;
+    display: flex;
+  }
+
+  &__btn{
+    display: flex;
+    place-items: center;
+    justify-content: center;
+
+    height: 100%;
+    padding: 0 3rem;
+    cursor: pointer;
+    flex: 1;
+  }
+
+  &__logo{
+    font-weight: 600;
+    font-size: 2rem;
+  }
+}
+
+.basket-wrapper{
+  position: fixed;
+  top: 4rem;
+  right: 0;
+  z-index: 10;
+}

@@ -1,0 +1,52 @@
+$animation-duration: var(--animation-duration);
+$direction: var(--direction);
+
+.running-text{
+  height: 100%;
+  width: 100%;
+
+  overflow: hidden;
+
+  display: flex;
+  place-items: center;
+}
+
+.text {
+  flex: 1;
+  white-space: nowrap;
+}
+
+.text > span{
+  margin-right: 35px;
+  font-size: 30px;
+  font-weight: 100;
+  color: black;
+  text-transform: uppercase;
+}
+
+.text-1 {
+  animation: slide-left var(--animation-duration, 25s) linear infinite;
+}
+
+.text-2 {
+  animation-delay: calc(var(--animation-duration, 25s) / 2);
+  animation: slide-left var(--animation-duration, 25s) linear infinite;
+}
+
+@keyframes slide-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes slide-right {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
