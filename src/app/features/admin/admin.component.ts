@@ -5,6 +5,8 @@ import { AccessoryService } from '../../core/services/accessory.service';
 import { BasicProductModel } from '../../core/models/basic-product.model';
 import { PhoneModel } from '../../core/models/phone.model';
 import { AccessoryModel } from '../../core/models/accessory.model';
+import { NgForOf, NgIf, NgSwitch, NgSwitchCase } from '@angular/common';
+import { AdminFormContainerComponent } from './containers/admin-form-container.component';
 
 enum ActionType {
   'Create' = 'Створити',
@@ -137,7 +139,9 @@ enum ActionType {
       }
     `,
   ],
+  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [NgSwitch, NgForOf, NgIf, NgSwitchCase, AdminFormContainerComponent],
 })
 export class AdminComponent {
   readonly ActionType = ActionType;
@@ -168,10 +172,10 @@ export class AdminComponent {
 
     if (isEmpty) {
       switch (key) {
-        case 'Телефони':
+        case ShopCategory.Phones.toString():
           this.emptyItem = {} as PhoneModel;
           break;
-        case 'Чохли':
+        case ShopCategory.Cases.toString():
           this.emptyItem = {} as AccessoryModel;
           break;
         default:
@@ -194,12 +198,12 @@ export class AdminComponent {
 
   private updateItemsByKey(key: ShopCategory) {
     switch (key) {
-      case 'Телефони':
+      case ShopCategory.Phones:
         this.phoneService.read().subscribe((x) => {
           this.setItems(x);
         });
         break;
-      case 'Чохли':
+      case ShopCategory.Cases:
         this.accessoryService.read().subscribe((x) => {
           this.setItems(x);
         });

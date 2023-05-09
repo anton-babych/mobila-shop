@@ -2,11 +2,16 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BasketService } from '../../../features/basket/basket.service';
 import { ResizeService } from '../../services/resize.service';
 import { Subscription } from 'rxjs';
+import { NgIf } from '@angular/common';
+import { RouterLink } from '@angular/router';
+import { BasketContainerComponent } from '../../../features/basket/containers/basket-container.component';
 
 @Component({
-  selector: 'header',
+  selector: 'layout-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
+  standalone: true,
+  imports: [NgIf, RouterLink, BasketContainerComponent],
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   isBasketOpened: boolean = false;
@@ -24,9 +29,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.basketService.count.subscribe((x) => (this.basketCount = x))
     );
     this.subscriptions.push(
-      this.basketService.basketIsClicked.subscribe(
-        (x) => (this.isBasketOpened = x)
-      )
+      this.basketService.basketIsClicked.subscribe((x) => (this.isBasketOpened = x))
     );
   }
 
@@ -35,8 +38,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   handleBasketClick() {
-    this.basketService.setBasketClick(
-      !this.basketService.basketIsClicked.value
-    );
+    this.basketService.setBasketClick(!this.basketService.basketIsClicked.value);
   }
 }

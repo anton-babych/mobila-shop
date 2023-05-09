@@ -12,12 +12,26 @@ import { PhoneService } from '../../../core/services/phone.service';
 import { AccessoryModel } from '../../../core/models/accessory.model';
 import { AccessoryService } from '../../../core/services/accessory.service';
 import { ShopCategory } from '../../../core/utils/shopCategory';
+import { RunningTextComponent } from '../../../shared/running-text/running-text.component';
+import { NgForOf, NgIf, NgSwitch, NgSwitchCase } from '@angular/common';
+import { MouseMaskImageComponent } from '../../../shared/mouse-mask-image/mouse-mask-image.component';
+import { ShopGridComponent } from '../shop-grid/shop-grid.component';
 
 @Component({
   selector: 'shop-container',
   templateUrl: './shop-container.component.html',
   styleUrls: ['./shop-container.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    RunningTextComponent,
+    NgIf,
+    NgForOf,
+    NgSwitch,
+    NgSwitchCase,
+    MouseMaskImageComponent,
+    ShopGridComponent,
+  ],
+  standalone: true,
 })
 export class ShopContainerComponent implements OnInit, OnDestroy {
   data: PhoneModel[] | AccessoryModel[] = [];
@@ -37,8 +51,6 @@ export class ShopContainerComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    window.scrollTo(0, 0);
-
     this.getDataByCategory();
 
     this.checkScreenSize();
@@ -70,10 +82,10 @@ export class ShopContainerComponent implements OnInit, OnDestroy {
 
   private getDataByCategory() {
     switch (this.pickedCategory) {
-      case 'Телефони':
+      case ShopCategory.Phones:
         this.getPhonesData();
         break;
-      case 'Чохли':
+      case ShopCategory.Cases:
         this.getAccessoryData();
         break;
 

@@ -8,13 +8,16 @@ import {
 } from '@angular/core';
 import { AdminForm, FormControlConfig } from '../admin.form';
 import { PhoneModel } from '../../../../../core/models/phone.model';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { NgForOf } from '@angular/common';
 
 @Component({
   selector: 'phones-form',
   templateUrl: '../admin.form.html',
   styleUrls: ['../admin.form.scss'],
+  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [ReactiveFormsModule, NgForOf],
 })
 export class PhonesFormComponent
   extends AdminForm<PhoneModel>

@@ -4,20 +4,23 @@ import {
   ChangeDetectorRef,
   Component,
   OnDestroy,
-  ViewChild
+  ViewChild,
 } from '@angular/core';
-import {CursorService} from "../cursor.service";
-import {CursorType} from "../CursorType";
-import {TextCursorComponent} from "../text-cursor/text-cursor.component";
-import {skip, Subscription} from "rxjs";
+import { CursorService } from '../cursor.service';
+import { CursorType } from '../CursorType';
+import { TextCursorComponent } from '../text-cursor/text-cursor.component';
+import { skip, Subscription } from 'rxjs';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'cursor-container',
   templateUrl: './cursor-container.component.html',
   styleUrls: ['./cursor-container.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [NgIf, TextCursorComponent],
+  standalone: true,
 })
-export class CursorContainerComponent implements OnDestroy, AfterViewInit{
+export class CursorContainerComponent implements OnDestroy, AfterViewInit {
   isCursorVisible: boolean = false;
   cursorType: CursorType = CursorType.Text;
   cursorText: string = 'перевірка';
@@ -25,17 +28,15 @@ export class CursorContainerComponent implements OnDestroy, AfterViewInit{
   @ViewChild(TextCursorComponent) cursor!: TextCursorComponent;
 
   private destroySubscription!: Subscription;
-  private closeTimeoutId!: number;
+  private closeTimeoutId!: any;
 
-  constructor(private cursorService: CursorService,
-              private cd: ChangeDetectorRef) {}
+  constructor(private cursorService: CursorService, private cd: ChangeDetectorRef) {}
 
   ngAfterViewInit(): void {
     this.initCursorEvents();
   }
 
-  ngOnDestroy(): void {
-  }
+  ngOnDestroy(): void {}
 
   private initCursorEvents() {
     this.cursorService.cursorOpened.pipe(skip(1)).subscribe((value) => {
@@ -68,12 +69,12 @@ export class CursorContainerComponent implements OnDestroy, AfterViewInit{
   private onClosed() {
     this.destroySubscription?.unsubscribe();
 
-    this.closeTimeoutId = setTimeout(()=>{
-      this.destroySubscription = this.cursor.beforeDestroy().subscribe(()=>{
+    this.closeTimeoutId = setTimeout(() => {
+      this.destroySubscription = this.cursor.beforeDestroy().subscribe(() => {
         this.isCursorVisible = false;
         this.detectChanges();
-      })
-    },50)
+      });
+    }, 50);
   }
 
   private detectChanges() {

@@ -5,5 +5,6 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   templateUrl: './recommended-item.component.html',
   styleUrls: ['./recommended-item.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
 })
 export class RecommendedItemComponent {}

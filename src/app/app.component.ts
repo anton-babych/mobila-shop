@@ -7,13 +7,12 @@ import { ResizeService } from './core/services/resize.service';
 @Component({
   selector: 'app-root',
   template: `
-    <app-menu></app-menu>
-    <header></header>
+    <layout-header></layout-header>
     <cursor-container *ngIf="!isMobile"></cursor-container>
     <div class="wrapper">
       <router-outlet></router-outlet>
     </div>
-    <footer></footer>
+    <layout-footer></layout-footer>
   `,
   styles: [
     `

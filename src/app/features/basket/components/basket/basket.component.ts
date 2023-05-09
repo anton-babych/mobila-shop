@@ -1,14 +1,25 @@
-import {AfterViewInit, Component, EventEmitter, Input, Output} from '@angular/core';
-import {BasketModel} from "../../basket.model";
-import {gsap} from "gsap";
-import {delay, Observable} from "rxjs";
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
+import { BasketModel } from '../../basket.model';
+import { gsap } from 'gsap';
+import { Observable } from 'rxjs';
+import { NgForOf, NgIf } from '@angular/common';
 
 @Component({
   selector: 'basket',
   templateUrl: './basket.component.html',
-  styleUrls: ['./basket.component.scss']
+  styleUrls: ['./basket.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [NgIf, NgForOf],
 })
-export class BasketComponent implements AfterViewInit{
+export class BasketComponent implements AfterViewInit {
   @Input() basketsData!: BasketModel[];
   @Input() totalPrice!: number;
   @Input() beforeDestroy!: Observable<void>;
@@ -21,32 +32,33 @@ export class BasketComponent implements AfterViewInit{
   }
 
   private animateIn() {
-    let tl = gsap.timeline()
+    let tl = gsap.timeline();
 
     tl.from('.basket-container', {
-      x: "100%"})
+      x: '100%',
+    });
 
-    if(this.basketsData.length){
-      tl.from(".basket-item", {
-          stagger: .3,
-          x: "100%",
+    if (this.basketsData.length) {
+      tl.from('.basket-item', {
+        stagger: 0.3,
+        x: '100%',
       });
     }
   }
 
-  animateOut() : Promise<void>{
+  animateOut(): Promise<void> {
     return new Promise<void>((resolve, reject) => {
       try {
         gsap.to('.basket-container', 0.5, {
-          y: "-100%",
-          onComplete: ()=> {
+          y: '-100%',
+          onComplete: () => {
             resolve();
-          }
+          },
         });
-      }catch (e){
+      } catch (e) {
         reject(new Error('gsap not working here'));
       }
-    })
+    });
   }
 
   increaseCountFor(basket: BasketModel) {
@@ -58,7 +70,7 @@ export class BasketComponent implements AfterViewInit{
   decreaseCountFor(basket: BasketModel) {
     basket.count -= 1;
 
-    this.needsToRecalculateTotalPrice.emit()
+    this.needsToRecalculateTotalPrice.emit();
   }
 
   handleDeleteItem(basketId: string) {

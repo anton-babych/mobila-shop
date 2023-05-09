@@ -1,17 +1,13 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  Input,
-  ViewChild,
-} from '@angular/core';
-import { CursorService } from '../cursor/cursor.service';
-import { CursorType } from '../cursor/CursorType';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { NgForOf } from '@angular/common';
 
 @Component({
   selector: 'running-text',
   templateUrl: './running-text.component.html',
   styleUrls: ['./running-text.component.scss'],
+  standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [NgForOf],
 })
 export class RunningTextComponent {
   @Input() isLeft: boolean = true;

@@ -1,4 +1,11 @@
-import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PhoneService } from '../../../core/services/phone.service';
 import { PhoneModel } from '../../../core/models/phone.model';
@@ -9,12 +16,27 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { AccessoryService } from '../../../core/services/accessory.service';
 import { AccessoryModel } from '../../../core/models/accessory.model';
 import { ShopCategory } from '../../../core/utils/shopCategory';
+import { NgForOf, NgIf, NgSwitch, NgSwitchCase } from '@angular/common';
+import { SplitIntoCharsPipe } from '../../../core/pipes/split-into-chars.pipe';
+import { SplitIntoWordsPipe } from '../../../core/pipes/split-words.pipe';
+import { RunningTextComponent } from '../../../shared/running-text/running-text.component';
 
 @Component({
   selector: 'app-item-container',
   templateUrl: './item-container.component.html',
   styleUrls: ['./item-container.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+
+  imports: [
+    NgForOf,
+    NgSwitch,
+    NgSwitchCase,
+    NgIf,
+    SplitIntoCharsPipe,
+    SplitIntoWordsPipe,
+    RunningTextComponent,
+  ],
 })
 export class ItemContainerComponent implements OnInit, OnDestroy, AfterViewInit {
   item!: PhoneModel;
@@ -25,7 +47,13 @@ export class ItemContainerComponent implements OnInit, OnDestroy, AfterViewInit 
 
   private subscriptions: Subscription[] = [];
 
-  constructor(private route: ActivatedRoute, private cd: ChangeDetectorRef, private phoneService: PhoneService, private accessoriesService: AccessoryService, private basketService: BasketService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private cd: ChangeDetectorRef,
+    private phoneService: PhoneService,
+    private accessoriesService: AccessoryService,
+    private basketService: BasketService
+  ) {}
 
   ngOnInit() {
     this.subscriptions.push(
@@ -35,7 +63,7 @@ export class ItemContainerComponent implements OnInit, OnDestroy, AfterViewInit 
 
         if (!id) return;
         switch (this.category) {
-          case 'Телефони':
+          case ShopCategory.Phones:
             this.phoneService.readById(id).subscribe((x) => {
               if (!x) return;
               this.item = x;
@@ -48,7 +76,7 @@ export class ItemContainerComponent implements OnInit, OnDestroy, AfterViewInit 
               this.pushChanges();
             });
             break;
-          case 'Чохли':
+          case ShopCategory.Cases:
             this.accessoriesService.readById(id).subscribe((x) => {
               if (!x) return;
               this.item = x;
@@ -60,8 +88,6 @@ export class ItemContainerComponent implements OnInit, OnDestroy, AfterViewInit 
         }
       })
     );
-
-    window.scrollTo(0, 0);
 
     this.subscriptions.push(
       this.basketService.items.subscribe((x) => {

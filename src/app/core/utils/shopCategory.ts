@@ -2,6 +2,6 @@
 // export type ShopTypes = typeof SHOP_CATEGORY_KEYS[number];
 
 export enum ShopCategory {
-  Phones = 'Телефони',
-  Cases = 'Чохли',
+  Phones = 'phones',
+  Cases = 'cases',
 }

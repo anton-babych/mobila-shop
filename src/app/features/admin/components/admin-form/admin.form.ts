@@ -1,19 +1,6 @@
-import {
-  ChangeDetectorRef,
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-  Type,
-} from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { BasicProductModel } from '../../../../core/models/basic-product.model';
-import {
-  AbstractControl,
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 export interface FormControlConfig {
   name: string;
@@ -26,6 +13,7 @@ export interface FormControlConfig {
 @Component({
   selector: 'checking',
   template: ``,
+  standalone: true,
 })
 export abstract class AdminForm<T extends BasicProductModel> {
   @Input() item!: T;
@@ -73,8 +61,7 @@ export abstract class AdminForm<T extends BasicProductModel> {
   }
 
   private generateGUID() {
-    let u =
-      Date.now().toString(16) + Math.random().toString(16) + '0'.repeat(16);
+    let u = Date.now().toString(16) + Math.random().toString(16) + '0'.repeat(16);
     return [
       u.substr(0, 8),
       u.substr(8, 4),

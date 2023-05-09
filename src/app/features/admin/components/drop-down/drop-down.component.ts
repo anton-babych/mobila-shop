@@ -10,15 +10,14 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { BasicProductModel } from '../../../../core/models/basic-product.model';
+import { NgForOf } from '@angular/common';
 
 @Component({
   selector: 'drop-down',
   template: `
     <div class="dropdown bg-border">
       <button class="dropbtn ">{{ getNameOrOption(selectedOption) }}</button>
-      <div
-        class="dropdown-content bg-border-right bg-border-left bg-border-top"
-      >
+      <div class="dropdown-content bg-border-right bg-border-left bg-border-top">
         <ng-content></ng-content>
         <a
           class="cursor bg-border-bottom"
@@ -73,7 +72,9 @@ import { BasicProductModel } from '../../../../core/models/basic-product.model';
       }
     `,
   ],
+  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [NgForOf],
 })
 export class DropDownComponent<T> implements OnInit, OnChanges {
   @Input() options!: T[];
